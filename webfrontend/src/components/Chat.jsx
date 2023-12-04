@@ -29,17 +29,17 @@ const Chat = ({ currentProject }) => {
           {messages.length > 0 ? (
             <MessageList messages={messages} />
           ) : (
-            <React.Fragment>
-              <div className="flex-grow flex flex-col justify-center items-center">
-                <BannerText />
-              </div>
-            </React.Fragment>
+            <div className="flex-grow flex flex-col justify-center items-center">
+              <BannerText />
+            </div>
           )}
         </div>
       </div>
-      <div className="flex justify-center">
-        <SuggestionCards />
-      </div>
+      {messages.length === 0 && (
+        <div className="flex justify-center">
+          <SuggestionCards />
+        </div>
+      )}
       <div className="p-4">
         <InputBox onSendMessage={handleSendMessage} />
       </div>
