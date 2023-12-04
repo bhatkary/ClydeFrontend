@@ -1,22 +1,24 @@
 // SuggestionCards.jsx
 import React from "react";
+import SuggestionCard from "./SuggestionCard";
 
-const SuggestionCards = () => {
-  const suggestions = ["Hello", "How are you?", "Tell me a joke"];
+const SuggestionCards = ({ onSuggestionClick }) => {
+  // Set suggestions using a constant
+  const suggestions = [
+    "When in my next deadline?",
+    "What are the most urgent bugs right now?",
+    "Who on my team can help me with backend?",
+  ];
 
   return (
     <div className="mt-4">
-      <p className="text-gray-500 mb-2">Suggestions:</p>
       <div className="flex space-x-2">
         {suggestions.map((suggestion, index) => (
-          <div
+          <SuggestionCard
             key={index}
-            className="bg-gray-200 px-3 py-1 rounded-md cursor-pointer"
-            // Add an onClick handler to handle the suggestion click
-            onClick={() => console.log(`Clicked on suggestion: ${suggestion}`)}
-          >
-            {suggestion}
-          </div>
+            suggestion={suggestion}
+            onClick={onSuggestionClick}
+          />
         ))}
       </div>
     </div>

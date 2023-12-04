@@ -1,4 +1,3 @@
-// Chat.jsx
 import React, { useState, useEffect } from "react";
 import InputBox from "./InputBox";
 import MessageList from "./MessageList";
@@ -21,10 +20,7 @@ const Chat = ({ currentProject }) => {
 
   useEffect(() => {
     // Add any logic here that needs to run when messages change
-    console.log("Messages updated:", messages);
   }, [messages, currentProject]);
-
-  console.log("Current Project in Chat:", currentProject);
 
   return (
     <div className="flex flex-col h-[90vh]">
@@ -34,11 +30,15 @@ const Chat = ({ currentProject }) => {
             <MessageList messages={messages} />
           ) : (
             <React.Fragment>
-              <BannerText text="No messages yet. Start the conversation!" />
-              <SuggestionCards />
+              <div className="flex-grow flex flex-col justify-center items-center">
+                <BannerText />
+              </div>
             </React.Fragment>
           )}
         </div>
+      </div>
+      <div className="flex justify-center">
+        <SuggestionCards />
       </div>
       <div className="p-4">
         <InputBox onSendMessage={handleSendMessage} />

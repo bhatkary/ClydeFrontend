@@ -1,8 +1,6 @@
 import React from "react";
 
 const Message = ({ message, loading }) => {
-  console.log("Message in Message component:", message);
-
   const { sender, text, photo } = message;
 
   // Add styles for the message container

@@ -5,21 +5,25 @@ import Sidebar from "./Sidebar";
 import getProjects from "../integration/getProjects";
 
 const Main = () => {
-  // Use state to manage the selected project
-  const [currentProject, setCurrentProject] = useState(null);
-
   // Get projects data
   const projects = getProjects();
 
+  // Use state to manage the selected project, defaulting to the first project
+  const [currentProject, setCurrentProject] = useState(projects[0].id);
+
   // Update the current project when a project is clicked in the Sidebar
   const handleProjectClick = (project) => {
-    setCurrentProject(project);
+    setCurrentProject(project.id);
   };
 
   return (
     <div className="flex flex-1">
-      {/* Pass projects and the handleProjectClick function to the Sidebar */}
-      <Sidebar projects={projects} onProjectClick={handleProjectClick} />
+      {/* Pass projects, the handleProjectClick function, and the currentProject to the Sidebar */}
+      <Sidebar
+        projects={projects}
+        onProjectClick={handleProjectClick}
+        selectedProject={currentProject}
+      />
       <div className="flex-grow">
         {/* Pass the current project to the Chat component */}
         <Chat currentProject={currentProject} />
